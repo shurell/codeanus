@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -83,6 +85,25 @@ func main() {
 		}
 
 	} */
+
+	fmt.Println("==================================================================")
+	fmt.Println("========================      TREE      ==========================")
+	fmt.Println("==================================================================")
+	treeBuild("1c/CommonModules")
+
+}
+
+func treeBuild(str string) {
+	// строим дерево по выбранному пути
+
+	filepath.Walk(str, func(path string, info os.FileInfo, err error) error {
+		if info.IsDir() {
+			fmt.Println("ПАПКА:", path)
+		} else {
+			fmt.Println(path)
+		}
+		return nil
+	})
 
 }
 
