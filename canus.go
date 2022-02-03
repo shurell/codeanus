@@ -98,9 +98,17 @@ func treeBuild(str string) {
 
 	filepath.Walk(str, func(path string, info os.FileInfo, err error) error {
 		if info.IsDir() {
-			fmt.Println("ПАПКА:", path)
+			if info.Name() != "Ext" {
+				fmt.Println("ПАПКА:", info.Name())
+			}
 		} else {
-			fmt.Println(path)
+			x := strings.Split(info.Name(), ".")
+			if x[1] == "bsl" {
+				fmt.Println(info.Name())
+			} else {
+				//fmt.Println("Other file")
+			}
+
 		}
 		return nil
 	})
